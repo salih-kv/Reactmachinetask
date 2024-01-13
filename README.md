@@ -24,4 +24,4 @@ npm install
 ```
 npm run dev
 ```
-6. Open your browser and navigate to http://localhost:3001 to access the dashboard.
+6. Open your browser and navigate to http://localhost:5173 to access the dashboard.
