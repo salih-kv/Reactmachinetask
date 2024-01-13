@@ -19,6 +19,12 @@ const socialLinks = [
   { icon: <FaTwitter />, to: null },
 ];
 
+const greetings = [
+  { text: "Good Morning", emoji: "🌅" },
+  { text: "Good Afternoon", emoji: "☀️" },
+  { text: "Good Evening", emoji: "🌙" },
+];
+
 const Dashboard = () => {
   const { toggleNav } = useApp();
 
@@ -37,6 +43,13 @@ const Dashboard = () => {
     getTableData();
   }, []);
 
+  const greeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 5 && currentHour < 12) return greetings[0];
+    else if (currentHour >= 12 && currentHour < 18) return greetings[1];
+    else return greetings[2];
+  };
+
   return (
     <div className="lg:py-8 lg:px-16 p-4 bg-[#e8edff] w-full h-full">
       <header className="flex items-center justify-between mb-8">
@@ -48,10 +61,10 @@ const Dashboard = () => {
             <CgMenuLeft className="text-2xl" />
           </button>
           <h2 className="text-2xl font-medium">
-            Good Morning! <span>🌞</span>{" "}
+            {greeting().text} <span>{greeting().emoji}</span>{" "}
           </h2>
         </div>
-        <div className="bg-white flex items-center justify-between gap-4 p-2 lg:p-4 rounded-xl">
+        <div className="bg-white flex items-center justify-between gap-4 p-1 lg:p-4 rounded-xl">
           <article className="text-end hidden lg:block">
             <h6 className="font-medium">John Doe</h6>
             <p>john@doe.com</p>
@@ -66,18 +79,20 @@ const Dashboard = () => {
         </div>
       </header>
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8 mb-8">
-        <section className="bg-white shadow-md rounded-xl w-full lg:w-2/3 h-[460px]">
+        <section className="bg-white shadow-md rounded-xl w-full lg:w-2/3 h-[300px] lg:h-[460px]">
           {/* LINE CHART */}
           <ResponsiveLine
             data={lineChartData}
             margin={{ top: 50, right: 50, bottom: 50, left: 50 }}
             xScale={{ type: "point" }}
+            colors={["#a6cee3"]}
             yScale={{
               type: "linear",
               min: "0",
               max: "auto",
               stacked: true,
               reverse: false,
+              // tickValues: [5, 10, 15, 20], // tick values are corresponding to data
             }}
             curve="natural"
             axisTop={null}
@@ -99,11 +114,11 @@ const Dashboard = () => {
             areaOpacity={0}
           />
         </section>
-        <section className="bg-white shadow-md rounded-xl w-full lg:w-1/3 h-[460px]">
+        <section className="bg-white shadow-md rounded-xl w-full lg:w-1/3 h-[400px] lg:h-[460px]">
           {/* PIE CHART */}
           <ResponsivePie
             data={pieChartData}
-            margin={{ top: 50, right: 50, bottom: 180, left: 50 }}
+            margin={{ top: 40, right: 50, bottom: 170, left: 50 }}
             sortByValue={true}
             activeOuterRadiusOffset={8}
             colors={{ scheme: "greens" }}
