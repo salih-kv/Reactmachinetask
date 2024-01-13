@@ -1,12 +1,23 @@
+import { Link } from "react-router-dom";
 import { ResponsiveLine } from "@nivo/line";
 import { ResponsivePie } from "@nivo/pie";
 import Avatar from "../../assets/Rectangle 10.png";
+import CEOImage from "../../assets/media.png";
 
+import { Table } from "../../components/Table";
+import { Pagination } from "../../components/Pagination";
 import { useEffect } from "react";
 import { useData } from "../../context/DataContext";
 
+import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
 import { CgMenuLeft } from "react-icons/cg";
 import { useApp } from "../../context/AppContext";
+
+const socialLinks = [
+  { icon: <FaFacebook />, to: null },
+  { icon: <FaInstagram />, to: null },
+  { icon: <FaTwitter />, to: null },
+];
 
 const Dashboard = () => {
   const { toggleNav } = useApp();
@@ -17,6 +28,7 @@ const Dashboard = () => {
     getPieChartData,
     pieChartData,
     getTableData,
+    tableData,
   } = useData();
 
   useEffect(() => {
@@ -24,8 +36,6 @@ const Dashboard = () => {
     getLineChartData();
     getTableData();
   }, []);
-
-  console.log(lineChartData);
 
   return (
     <div className="lg:py-8 lg:px-16 p-4 bg-[#e8edff] w-full h-full">
@@ -115,6 +125,36 @@ const Dashboard = () => {
               },
             ]}
           />
+        </section>
+      </div>
+      <div className="flex flex-col lg:flex-row justify-between gap-8">
+        {/*  */}
+        <section className="flex flex-col items-center w-full lg:w-3/4">
+          <Table data={tableData} />
+          <Pagination />
+        </section>
+        <section className="w-full lg:w-1/4">
+          {/* PROFILE CARD */}
+          <div className="flex lg:block items-center justify-center">
+            <div className="max-w-sm max-h-fit rounded-xl overflow-hidden bg-white shadow-md">
+              <img className="w-full" src={CEOImage} alt="" />
+              <div className="px-6 py-4 text-center">
+                <div className="font-bold text-xl mb-2">John Doe</div>
+                <p className="text-gray-700 text-base">CEO</p>
+                <div className="flex items-center justify-center gap-4 p-4">
+                  {socialLinks?.map(({ icon, to }, index) => (
+                    <Link
+                      to={to}
+                      key={index}
+                      className="text-2xl text-[#23a6f0]"
+                    >
+                      {icon}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </div>

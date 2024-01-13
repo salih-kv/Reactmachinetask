@@ -6,6 +6,7 @@ const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [lineChartData, setLineChartData] = useState([]);
   const [pieChartData, setPieChartData] = useState([]);
+  const [tableData, setTableData] = useState([]);
 
   const getLineChartData = async () => {
     try {
@@ -36,6 +37,15 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const getTableData = async () => {
+    try {
+      const response = await instance.get("/api/table");
+      setTableData(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <DataContext.Provider
       value={{
@@ -43,6 +53,8 @@ export const DataProvider = ({ children }) => {
         lineChartData,
         getPieChartData,
         pieChartData,
+        getTableData,
+        tableData,
       }}
     >
       {children}
