@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  @apply no-scrollbar;
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+}
+
+.active {
+  @apply bg-white text-black;
+}
+
+.nav {
+  @apply w-60 fixed left-0 top-0 z-20 h-full transition-[left] duration-300 ease-in-out flex flex-col justify-between items-center bg-secondary-bg;
+}
+
+.nav.opened {
+  @apply left-0;
+}
+
+.nav.closed {
+  @apply -left-60 lg:left-0;
+}
