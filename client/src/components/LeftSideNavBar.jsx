@@ -45,7 +45,7 @@ export const LeftSideNavBar = ({ isOpen, toggleNav }) => {
             to={to}
             key={label}
             onClick={toggleNav}
-            className="bg-tertiary-bg text-white hover:bg-white/10 hover:text-white active:bg-white active:text-black px-8 py-4 ml-12 flex items-center gap-2 rounded-l-xl"
+            className="bg-tertiary-bg text-white hover:bg-white/10 hover:text-white active:bg-white active:text-black px-8 py-4 ml-12 flex items-center gap-2 rounded-l-xl font-medium"
           >
             <img src={icon} alt="Nav-Link" />
             <span>{label}</span>

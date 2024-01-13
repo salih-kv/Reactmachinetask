@@ -136,6 +136,7 @@ const Dashboard = () => {
                 itemWidth: 100,
                 itemHeight: 30,
                 symbolSize: 16,
+                symbolShape: "circle",
                 itemDirection: "left-to-right",
               },
             ]}

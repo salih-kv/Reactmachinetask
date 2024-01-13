@@ -22,7 +22,7 @@
 }
 
 body {
-  @apply no-scrollbar;
+  @apply no-scrollbar font-body;
   overflow: -moz-scrollbars-none;
   scrollbar-width: none;
 }
